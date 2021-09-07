@@ -43,7 +43,7 @@
                                               <td>{{$i}}</td>
                                                 <td>{{$value->title}}</td>
                                                 <td>{{$value->category_id}}</td>
-                                                <td><img width="50px" src="{{asset('/storage/media/')}}/{{$value->image}}"></td>
+                                                <td><img width="50px" src="{{asset('/storage/app/public/media/')}}/{{$value->image}}"></td>
                                                 @if($value->status==1)
                                                 <td><a href="{{url('admin/product/manage_product')}}/{{$value->id}}/status/0"  class="btn btn-success btn-sm">Active</a></td>
                                                 @else

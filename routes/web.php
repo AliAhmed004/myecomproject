@@ -24,7 +24,9 @@ use App\Http\Controllers\BrandController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/sym', function () {
+  Artisan::call('storage:link');
+});
 //------------ Admin--Login--Routes------------
 Route::get('admin',[AdminController::class,'index']);
 Route::post('admin',[AdminController::class,'login_auth']);
