@@ -25,13 +25,17 @@
                                                             </div>
                                                             @enderror
                                                     </div>
+                                                
+
+                                                       
+                                                  
                                                     <div class="col-lg-4" >
                                                         <label for="parent_cat" class="control-label mb-1">Parent Category</label>
                                                         <select name="parent_cat" id="parent_cat" class="form-control">
                                                         <option value="">Please select</option>
                                                         @foreach($all_cats as $key=>$value)
 
-                                                        @if($value->id==$cat_id)
+                                                        @if($value->id==$parent_cat_id)
                                                         <option selected value="{{$value->id}}">{{$value->cat_name}}</option>
                                                        @else
                                                        <option value="{{$value->id}}">{{$value->cat_name}}</option>

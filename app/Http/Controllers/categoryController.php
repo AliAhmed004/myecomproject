@@ -21,14 +21,15 @@ class categoryController extends Controller
             $cat['cat_id']=$cat->id;
             $cat['cat_name']=$cat->cat_name;
             $cat['cat_slug']=$cat->cat_slug;
-
+            $parent_cat_id=DB::table('categories')->select('parent_cat_id')->where('id',$id)->first();
+            $cat['parent_cat_id']=$parent_cat_id->parent_cat_id;
         }
         else
         {   
             $cat['cat_id']='';
             $cat['cat_name']='';
             $cat['cat_slug']='';
-          
+            $cat['parent_cat_id']='';
 
         }
        
