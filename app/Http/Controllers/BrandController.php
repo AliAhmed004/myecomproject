@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\brand;
+use App\Models\Admin\brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -26,6 +26,7 @@ class BrandController extends Controller
             $brand['brand_id']=$brand->id;
             $brand['brand_name']=$brand->name;
             $brand['brand_image']=$brand->image;
+            $brand['is_header']=($brand->is_header==0) ? '' : 'checked';
  
         }
         else
@@ -33,6 +34,7 @@ class BrandController extends Controller
             $brand['brand_id']='';
             $brand['brand_name']='';
             $brand['brand_image']='';
+            $brand['is_header']='';
 
         }
        return view('admin.manage_brand',$brand);
@@ -76,6 +78,14 @@ class BrandController extends Controller
             $image_name=$r->input('previous_brand_image');
          }
          $update_brand->image=$image_name;
+         if($r->input('is_header')==null)
+         {
+            $update_brand->is_header=0;
+         }
+         else
+         {
+            $update_brand->is_header=1;
+         }
          $update_brand->save();
          $r->session()->flash('status','Brand Updated Successfully');
          return redirect('admin/brand');
@@ -93,7 +103,15 @@ class BrandController extends Controller
            $image->storeAs('/public/media/brand_images',$image_name);
 
        }
-       $brand=brand::insert(['name'=>$brand_name,'image'=>$image_name]);
+       if($r->input('is_header')==null)
+       {
+        $is_header=0;
+       }
+       else
+       {
+        $is_header=1;
+       }
+       $brand=brand::insert(['name'=>$brand_name,'image'=>$image_name,'is_header'=>$is_header]);
 
        if($brand)
        {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\category;
+use App\Models\Admin\category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +21,7 @@ class categoryController extends Controller
             $cat['cat_id']=$cat->id;
             $cat['cat_name']=$cat->cat_name;
             $cat['cat_slug']=$cat->cat_slug;
+            $cat['is_header']=($cat->is_header==0) ? '' : 'checked';
             $parent_cat_id=DB::table('categories')->select('parent_cat_id')->where('id',$id)->first();
             $cat['parent_cat_id']=$parent_cat_id->parent_cat_id;
         }
@@ -30,6 +31,8 @@ class categoryController extends Controller
             $cat['cat_name']='';
             $cat['cat_slug']='';
             $cat['parent_cat_id']='';
+            
+            
 
         }
        
@@ -38,6 +41,7 @@ class categoryController extends Controller
     }
     function manage_category_process(Request $r)
     {
+      
         $r->validate(['categoryName'=>'required','categorySlug'=>'required']);
         $slug=$r->input('categorySlug');
         // if we want to check data exist except a particular id, then we will run this query..
@@ -56,6 +60,14 @@ class categoryController extends Controller
          $update_cat->cat_name=$r->input('categoryName');
          $update_cat->cat_slug=$r->input('categorySlug');
          $update_cat->parent_cat_id=$r->input('parent_cat');
+         if($r->input('is_header')==null)
+         {
+            $update_cat->is_header=0;
+         }
+         else
+         {
+            $update_cat->is_header=1;
+         }
          $update_cat->save();
          $r->session()->flash('status','Category Updated Successfully');
          return redirect('admin/category');
@@ -67,7 +79,15 @@ class categoryController extends Controller
        $category=$r->input('categoryName');
        $slug=$r->input('categorySlug');
        $parent_cat_id=$r->input('parent_cat');
-       $record=category::insert(['cat_name'=>$category,'cat_slug'=>$slug,'parent_cat_id'=>$parent_cat_id]);
+       if($r->input('is_header')==null)
+       {
+        $is_header=0;
+       }
+       else
+       {
+        $is_header=1;
+       }
+       $record=category::insert(['cat_name'=>$category,'cat_slug'=>$slug,'parent_cat_id'=>$parent_cat_id,'is_header'=>$is_header]);
 
        if($record)
        {

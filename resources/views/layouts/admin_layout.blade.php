@@ -105,12 +105,12 @@ var myclass = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
                         </li>
                         <li class=" @yield('brand_active') has-sub">
                             <a class="js-arrow" href="{{url('/admin/brand')}}">
-                            <i class="fa fa-tag" aria-hidden="true"></i>Brand</a>
+                            <i class="fa fa-bandcamp" aria-hidden="true"></i>Brand</a>
                            
                         </li>
                         <li class=" @yield('size_active') has-sub">
                             <a class="js-arrow" href="{{url('/admin/size')}}">
-                            <i class="fa fa-tag" aria-hidden="true"></i>Size</a>
+                            <i class="fa fa-square"></i>Size</a>
                            
                         </li>
                         <li class=" @yield('color_active') has-sub">
@@ -121,6 +121,11 @@ var myclass = location.pathname.substring(location.pathname.lastIndexOf('/')+1);
                         <li class=" @yield('product_active') has-sub">
                             <a class="js-arrow" href="{{url('/admin/product')}}">
                             <i class="fa fa-product-hunt" aria-hidden="true"></i>product</a>
+                           
+                        </li>
+                        <li class=" @yield('customer_active') has-sub">
+                            <a class="js-arrow" href="{{url('/admin/customer')}}">
+                            <i class="fa fa-user-o" aria-hidden="true"></i></i>Customers</a>
                            
                         </li>
                        

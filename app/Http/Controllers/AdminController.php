@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin;
+use App\Models\Admin\admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\hash;
 

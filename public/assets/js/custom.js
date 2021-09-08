@@ -41,5 +41,21 @@ $(document).on('click','#remove_multiple_imgs',function(e){
     $(this).parents('.multiple_column').remove();
 });
 
+// Password Show or Not
 
+$('#customer__pass__field i').click(function(){
+    if($('#password + i').hasClass('fa-eye-slash'))
+    {
+        $('#password + i').removeClass('fa-eye-slash');
+        $('#password + i').addClass('fa-eye');
+        $(this).parent().find('#password').attr('type','text');
+    }
+    else
+    {
+        $('#password + i').removeClass('fa-eye');
+        $('#password + i').addClass('fa-eye-slash');
+        $(this).parent().find('#password').attr('type','password'); 
+    }
+     
+})
 });// End Document

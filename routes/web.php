@@ -9,7 +9,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
-
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,6 +75,14 @@ Route::group(['middleware'=>'admin_auth'], function () {
      Route::post('admin/brand/manage_brand',[BrandController::class,'manage_brand_process']);
      Route::get('admin/brand/manage_brand/{id}/status/{status_value}',[BrandController::class,'status']);
      Route::get('admin/brand/delete_brand/{id}',[BrandController::class,'delete_brand']);
+      
+     //---------- Customers ------------
+     Route::get('admin/customer',[CustomerController::class,'show']);
+     Route::get('admin/customer/manage_customer/{id?}',[CustomerController::class,'manage_customer']);
+     Route::post('admin/customer/manage_customer',[CustomerController::class,'manage_customer_process']);
+     Route::get('admin/customer/view_customer/{id}',[CustomerController::class,'view_customer']);
+     Route::get('admin/customer/manage_customer/{id}/status/{status_value}',[CustomerController::class,'status']);
+     Route::get('admin/customer/delete_customer/{id}',[CustomerController::class,'delete_customer']);
     //------------ admin logout------------
 Route::get('/logout',[AdminController::class,'admin_logout']);
 });

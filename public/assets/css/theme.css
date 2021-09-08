@@ -14658,3 +14658,17 @@ section {
 {
     display: block!important;
 }
+#customer__pass__field
+{
+    position: relative;
+}
+#customer__pass__field i {
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    cursor: pointer;
+}
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}

@@ -47,8 +47,12 @@
                                              {{$message}}
                                             </div>
                                           @enderror
-                                          
-
+                                                    <div class="form-group has-success">
+                                                        <label for="is_header"   class="control-label mb-1">Show in Header</label>
+                                                        <input id="is_header"  name="is_header" {{$is_header}} type="checkbox" class="" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                
                                             
                                           @if($brand_image!='')
                                            <div class=" mb-3" >
