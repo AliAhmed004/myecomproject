@@ -1,15 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\dashboardController;
-use App\Http\Controllers\categoryController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\SizeController;
-use App\Http\Controllers\ColorController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\dashboardController;
+use App\Http\Controllers\Admin\categoryController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CustomerController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,12 +23,10 @@ use App\Http\Controllers\CustomerController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/sym', function () {
-  Artisan::call('storage:link');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 //------------ Admin--Login--Routes------------
 Route::get('admin',[AdminController::class,'index']);
 Route::post('admin',[AdminController::class,'login_auth']);
@@ -85,6 +85,10 @@ Route::group(['middleware'=>'admin_auth'], function () {
      Route::get('admin/customer/delete_customer/{id}',[CustomerController::class,'delete_customer']);
     //------------ admin logout------------
 Route::get('/logout',[AdminController::class,'admin_logout']);
+
+
+//------------ Front-Home-Page------------
+// Route::get('/',)
 });
 
 
