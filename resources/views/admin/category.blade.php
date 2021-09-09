@@ -25,6 +25,7 @@
                                                 <th>Serial#</th>
                                                 <th>Name</th>
                                                 <th>Slug</th>
+                                                <th>image</th>
                                                 <th>status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -42,6 +43,7 @@
                                               <td>{{$i}}</td>
                                                 <td>{{$value->cat_name}}</td>
                                                 <td>{{$value->cat_slug}}</td>
+                                                <td><img width="50px" src="{{asset('/storage/media/categories')}}/{{$value->cat_image}}"></td>
                                                 @if($value->status==1)
                                                 <td><a href="{{url('admin/category/manage_category')}}/{{$value->id}}/status/0"  class="btn btn-success btn-sm">Active</a></td>
                                                 @else

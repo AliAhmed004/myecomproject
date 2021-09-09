@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CustomerController;
 
+use App\Http\Controllers\Front\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +90,7 @@ Route::get('/logout',[AdminController::class,'admin_logout']);
 
 
 //------------ Front-Home-Page------------
-// Route::get('/',)
+ Route::get('/',[HomeController::class,'index']);
 });
 
 

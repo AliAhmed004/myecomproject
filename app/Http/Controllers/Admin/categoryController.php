@@ -6,6 +6,7 @@ use App\Models\Admin\category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+
 class categoryController extends Controller
 {
     function show()
@@ -31,7 +32,9 @@ class categoryController extends Controller
             $cat['cat_id']='';
             $cat['cat_name']='';
             $cat['cat_slug']='';
+            $cat['cat_img']='';
             $cat['parent_cat_id']='';
+            $cat['is_header']='';
             
             
 
@@ -42,7 +45,6 @@ class categoryController extends Controller
     }
     function manage_category_process(Request $r)
     {
-      
         $r->validate(['categoryName'=>'required','categorySlug'=>'required']);
         $slug=$r->input('categorySlug');
         // if we want to check data exist except a particular id, then we will run this query..
@@ -80,6 +82,13 @@ class categoryController extends Controller
        $category=$r->input('categoryName');
        $slug=$r->input('categorySlug');
        $parent_cat_id=$r->input('parent_cat');
+       if($r->hasfile('cat_img'))
+       {
+           $image=$r->file('cat_img');
+           $image_name=time().'.'.$image->extension();
+           $image->storeAs('/public/media/categories',$image_name);
+
+       }
        if($r->input('is_header')==null)
        {
         $is_header=0;
@@ -88,7 +97,7 @@ class categoryController extends Controller
        {
         $is_header=1;
        }
-       $record=category::insert(['cat_name'=>$category,'cat_slug'=>$slug,'parent_cat_id'=>$parent_cat_id,'is_header'=>$is_header]);
+       $record=category::insert(['cat_name'=>$category,'cat_slug'=>$slug,'parent_cat_id'=>$parent_cat_id,'cat_image'=>$image_name,'is_header'=>$is_header]);
 
        if($record)
        {

@@ -13,7 +13,7 @@
                                   
                                     <div class="card-body">
                                       
-                                        <form action="{{url('admin/category/manage_category')}}" method="post" >
+                                        <form action="{{url('admin/category/manage_category')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                             <div class="form-group">
                                                 <div class="row" >
@@ -60,11 +60,21 @@
                                                     </div>
 
                                                     <div class="col-lg-4" >
-                                                    <div class="form-group has-success">
+                                                        <div class="form-group has-success">
+                                                        <label for="cat_img" class="control-label mb-1">image</label>
+                                                        <input id="cat_img" name="cat_img" type="file" value="{{$cat_img}}" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
+                                                        </div>
+                                                       
+                                                    </div>
+
+                                                    <div class="col-lg-4 sp_lh" >
+                                                     <div class="form-group has-success">
                                                         <label for="is_header"  class="control-label mb-1">Show in Header</label>
                                                         <input id="is_header" {{$is_header}} name="is_header" type="checkbox" class="" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
                                                         <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                                        </div>
+                                                              
+                                                      </div>
                                                     </div>
                                                 </div>
 
